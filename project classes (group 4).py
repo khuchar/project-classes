@@ -1,4 +1,4 @@
-# Define the Doctor class with its properties
+# Define the Doctor class with its properties LMAO
 class Doctor:
     def __init__(self, id=None, name=None, speciality=None, timing=None, qualification=None, room=None):
         # Initialize the doctor object properties
