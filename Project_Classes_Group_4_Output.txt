@@ -3,7 +3,7 @@ Select from the following options, or select 3 to stop:
 1 - 	Doctors
 2 - 	Patients
 3 -	Exit Program 
->>> 1
+1
 
 Doctors Menu:
 1 - Display Doctors list
@@ -12,7 +12,7 @@ Doctors Menu:
 4 - Add doctor
 5 - Edit doctor info
 6 - Back to the Main Menu
->>> 1
+1
 Id   Name                   Speciality      Timing          Qualification   Room Number
 
 21   Dr.Gody                ENT             5am-11aM        MBBS,MD         17
@@ -34,7 +34,7 @@ Doctors Menu:
 4 - Add doctor
 5 - Edit doctor info
 6 - Back to the Main Menu
->>> 2
+2
 
 Enter the doctor Id: 66
 
@@ -49,7 +49,7 @@ Doctors Menu:
 4 - Add doctor
 5 - Edit doctor info
 6 - Back to the Main Menu
->>> 3
+3
 
 Enter the doctor name: Dr.David
 
@@ -64,7 +64,7 @@ Doctors Menu:
 4 - Add doctor
 5 - Edit doctor info
 6 - Back to the Main Menu
->>> 2
+2
 
 Enter the doctor Id: 20
 Can't find the doctor with the same ID on the system
@@ -76,7 +76,7 @@ Doctors Menu:
 4 - Add doctor
 5 - Edit doctor info
 6 - Back to the Main Menu
->>> 3
+3
 
 Enter the doctor name: Dr. Tom
 Can't find the doctor with the same name on the system
@@ -88,7 +88,7 @@ Doctors Menu:
 4 - Add doctor
 5 - Edit doctor info
 6 - Back to the Main Menu
->>> 4
+4
 
 Enter the doctor’s ID: 62
 Enter the doctor’s name: Dr. Smith
@@ -106,7 +106,7 @@ Doctors Menu:
 4 - Add doctor
 5 - Edit doctor info
 6 - Back to the Main Menu
->>> 5
+5
 
 Please enter the id of the doctor that you want to edit their information: 66
 Enter new Name: Dr. Mike kale
@@ -124,14 +124,14 @@ Doctors Menu:
 4 - Add doctor
 5 - Edit doctor info
 6 - Back to the Main Menu
->>> 6
+6
 
 Welcome to Alberta Hospital (AH) Managment system 
 Select from the following options, or select 0 to stop: 
 1 - 	Doctors
 2 - 	Patients
 3 -	Exit Program
->>> 2
+2
 
 Patients Menu:
 1 - Display patients list
@@ -156,7 +156,7 @@ Patients Menu:
 3 - Add patient
 4 - Edit patient info
 5 - Back to the Main Menu
->>> 2
+2
 
 Enter the Patient Id: 16
 Can't find the Patient with the same id on the system
@@ -167,7 +167,7 @@ Patients Menu:
 3 - Add patient
 4 - Edit patient info
 5 - Back to the Main Menu
->>> 2
+2
 
 Enter the Patient Id: 15
 
@@ -181,7 +181,7 @@ Patients Menu:
 3 - Add patient
 4 - Edit patient info
 5 - Back to the Main Menu
->>> 3
+3
 
 Enter Patient id: 16
 Enter Patient name: Mary
@@ -197,7 +197,7 @@ Patients Menu:
 3 - Add patient
 4 - Edit patient info
 5 - Back to the Main Menu
->>> 4
+4
 
 Please enter the id of the Patient that you want to edit their information: 13
 Enter new Name: Janina
@@ -213,7 +213,7 @@ Patients Menu:
 3 - Add patient
 4 - Edit patient info
 5 - Back to the Main Menu
->>> 1
+1
 
 ID   Name                   Disease         Gender          Age
            
@@ -233,12 +233,12 @@ Patients Menu:
 3 - Add patient
 4 - Edit patient info
 5 - Back to the Main Menu
->>> 5
+5
 
 Welcome to Alberta Hospital (AH) Managment system 
 Select from the following options, or select 0 to stop: 
 1 - 	Doctors
 2 - 	Patients
 3 -	Exit Program 
->>> 3
+3
 Thanks for using the program. Bye!
