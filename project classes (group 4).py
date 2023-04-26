@@ -54,7 +54,7 @@ class Doctor:
     def __str__(self):
         return f"{self.doctor_id}_{self.name}_{self.specialization}_{self.working_time}_{self.qualification}_{self.room_number}"
 
-#############################################################################
+
 
 
 class DoctorManager:
@@ -165,7 +165,6 @@ class DoctorManager:
         print(f"Doctor whose ID is {new_dr.get_doctor_id()} has been added\n")
 
 
-##############################################################################
 
 
 class Patient:
@@ -216,7 +215,7 @@ class Patient:
         return f"{self.pid}_{self.name}_{self.disease}_{self.gender}_{self.age}"
 
 
-#############################################################################
+
 
 
 class PatientManager:
@@ -304,7 +303,7 @@ class PatientManager:
         print(f"Patient whose ID is {new_patient.get_pid()} has been added.\n")
 
 
-################################################################################
+
 
 class Management:
     # create doctor and patient managers
@@ -382,7 +381,7 @@ class Management:
                 print("Invalid input. Please try again.\n")
 
 
-#############################################################
+
 
 # create an instance of Management class and run the program
 management_system = Management()
