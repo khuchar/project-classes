@@ -1,393 +1,391 @@
-# Define the Doctor class with its properties LMAO
+# Define the Doctor class with its properties 
 class Doctor:
-    def __init__(self, id=None, name=None, speciality=None, timing=None, qualification=None, room=None):
-        # Initialize the doctor object properties
-        self.id = id
-        self.name = name
-        self.speciality = speciality
-        self.timing = timing
-        self.qualification = qualification
-        self.room = room
 
-    # Getters
-    def get_id(self):
-        return self.id
+    # in constructor keyword arguments are used so that the object can be instantiated without passing values
+
+    def __init__(self, doctor_id=None, name=None, specialization=None, working_time=None, qualification=None,
+                 room_number=None):
+        self.doctor_id = doctor_id
+        self.name = name
+        self.specialization = specialization
+        self.working_time = working_time
+        self.qualification = qualification
+        self.room_number = room_number
+
+    # getters and setters
+
+    def get_doctor_id(self):
+        return self.doctor_id
+
+    def set_doctor_id(self, new_id):
+        self.doctor_id = new_id
 
     def get_name(self):
         return self.name
 
-    def get_speciality(self):
-        return self.speciality
+    def set_name(self, new_name):
+        self.name = new_name
 
-    def get_timing(self):
-        return self.timing
+    def get_specialization(self):
+        return self.specialization
+
+    def set_specialization(self, new_specialization):
+        self.specialization = new_specialization
+
+    def get_working_time(self):
+        return self.working_time
+
+    def set_working_time(self, new_working_time):
+        self.working_time = new_working_time
 
     def get_qualification(self):
         return self.qualification
 
-    def get_room(self):
-        return self.room
-
-    # Setters
-    def set_id(self, new_id):
-        self.id = new_id
-
-    def set_name(self, new_name):
-        self.name = new_name
-
-    def set_speciality(self, new_speciality):
-        self.speciality = new_speciality
-
-    def set_timing(self, new_timing):
-        self.timing = new_timing
-
     def set_qualification(self, new_qualification):
         self.qualification = new_qualification
 
-    def set_room(self, new_room):
-        self.room = new_room
+    def get_room_number(self):
+        return self.room_number
 
-    # String representation of the doctor object
+    def set_room_number(self, new_room_number):
+        self.room_number = new_room_number
+
+    # returns string representation of doctor object with underscores in between just like in file
     def __str__(self):
-        return str(self.id) + '_' + self.name + '_' + self.speciality + '_' + self.timing + '_' + self.qualification + '_' + str(self.room)
+        return f"{self.doctor_id}_{self.name}_{self.specialization}_{self.working_time}_{self.qualification}_{self.room_number}"
+
+#############################################################################
 
 
-# Define the DoctorManager class with its methods
 class DoctorManager:
+
+    # create a list of doctors and populate it from the doctors.txt
     def __init__(self):
-        # Create an empty list to hold doctors
-        self.doctors_list = []
-        # Call read_doctors_file method to load data from file into the list
+        self.doctors = []
         self.read_doctors_file()
 
-    # Method to format a doctor's information in the same format as in the data file
+    # format doctor object just like in the file
     def format_dr_info(self, dr):
-        return str(dr.id) + '_' + dr.name + '_' + dr.speciality + '_' + dr.timing + '_' + dr.qualification + '_' + str(dr.room)
+        return f"{dr.get_doctor_id()}_{dr.get_name()}_{dr.get_specialization()}_" \
+               f"{dr.get_working_time()}_{dr.get_qualification()}_{dr.get_room_number()}"
 
-    # Method to get doctor information from user and create a doctor object
+    # ask user for info to enter new doctor
     def enter_dr_info(self):
-        # Prompt user to enter doctor info
-        dr_id = input('Enter doctor ID: ')
-        name = input('Enter doctor name: ')
-        speciality = input('Enter doctor speciality: ')
-        timing = input('Enter doctor timing: ')
-        qualification = input('Enter doctor qualification: ')
-        room = input('Enter doctor room: ')
-        # Create a new doctor object using the entered information
-        new_dr = Doctor(dr_id, name, speciality, timing, qualification, room)
-        # Return the new doctor object
-        return new_dr
+        dr_id = input("Enter the doctor’s ID: ")
+        name = input("Enter the doctor’s name: ")
+        specialization = input("Enter the doctor’s specility: ")
+        working_time = input("Enter the doctor’s timing (e.g., 7am-10pm): ")
+        qualification = input("Enter the doctor’s qualification: ")
+        room_number = input("Enter the doctor’s room number: ")
+        print()
+        new_doctor = Doctor(dr_id, name, specialization, working_time, qualification, room_number)
+        return new_doctor
 
-    # Method to read doctor information from the data file and populate the list
+    # reads doctors.txt to get a list of doctors. This file is separated by underscores
     def read_doctors_file(self):
-        # Open the data file
-        with open('doctors.txt', 'r') as f:
-            # Iterate over each line in the file
-            for line in f:
-                # Split the line into its component properties
-                dr_props = line.strip().split('_')
-                # Create a new Doctor object using the properties
-                new_dr = Doctor(dr_props[0], dr_props[1], dr_props[2], dr_props[3], dr_props[4], dr_props[5])
-                # Add the new doctor object to the doctors list
-                self.doctors_list.append(new_dr)
+        try:
+            with open("doctors.txt") as f:
+                # skip the header line
+                next(f)
+                for line in f:
+                    parts = line.strip().split("_")
+                    self.doctors.append(Doctor(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5]))
+        except FileNotFoundError:
+            print("Doctors file not found.\n")
 
-    # Method to search for a doctor by their ID
+    # search for a doctor in the doctors list by id. If it is found print it
     def search_doctor_by_id(self):
-        # Prompt user to enter doctor ID
-        dr_id = input('Enter doctor ID: ')
-        # Iterate over each doctor in the list
-        for dr in self.doctors_list:
-            # Check if the current doctor's ID matches the entered ID
-            if dr.id == dr_id:
-                # If a match is found, display the doctor's information and return True
-                print(self.format_dr_info(dr))
-                return True
-        # If no match is found, display an error message and return False
-        print('Can’t find the doctor...')
-        return False
+        dr_id = input("Enter the doctor Id: ")
+        found = False
+        for dr in self.doctors:
+            if dr.get_doctor_id() == dr_id:
+                print("{:<10} {:<20} {:<15} {:<15} {:<15} {:<10}\n".format(
+                    "Id", "Name", "Speciality", "Timing", "Qualification", "Room Number"))
+                print(self.display_doctor_info(dr))
+                found = True
+                break
+        if not found:
+            print("Can't find the doctor with the same ID on the system\n")
 
-    # Method to search for a doctor by their name
+    # search for a doctor in the doctors list by name. If it is found print it
     def search_doctor_by_name(self):
-        # Prompt user to enter doctor name
-        dr_name = input('Enter doctor name: ')
-        # Iterate over each doctor in the list
-        for dr in self.doctors_list:
-            # Check if the current doctor's name matches the entered name
-            if dr.name.lower() == dr_name.lower():
-                # If a match is found, display the doctor's information and return True
-                print(self.format_dr_info(dr))
-                return True
-        # If no match is found, display an error message and return False
-            print('Can’t find the doctor...')
-            return False
+        name = input("Enter the doctor name: ")
+        found = False
+        for dr in self.doctors:
+            if dr.get_name() == name:
+                print("{:<10} {:<20} {:<15} {:<15} {:<15} {:<10}\n".format(
+                    "Id", "Name", "Speciality", "Timing", "Qualification", "Room Number"))
+                print(self.display_doctor_info(dr))
+                found = True
+        if not found:
+            print("Can't find the doctor with the same name on the system\n")
 
-# Method to add a new doctor to the list
-    def add_doctor(self):
-        # Call enter_dr_info method to get new doctor information
+    # display one doctor object in fixed width fields like a table
+    def display_doctor_info(self, dr):
+        return "{:<10} {:<20} {:<15} {:<15} {:<15} {:<10}\n".format(
+            dr.get_doctor_id(), dr.get_name(), dr.get_specialization(), dr.get_working_time(), dr.get_qualification(),
+            dr.get_room_number())
+
+    # edit the doctor in the doctors list and also update the doctors.txt file
+    def edit_doctor_info(self):
+        dr_id = input("Please enter the id of the doctor that you want to edit their information: ")
+        for dr in self.doctors:
+            if dr.get_doctor_id() == dr_id:
+                dr.set_name(input("Enter new Name: "))
+                dr.set_specialization(input("Enter new Specilist in: "))
+                dr.set_working_time(input("Enter new Timing: "))
+                dr.set_qualification(input("Enter new Qualification: "))
+                dr.set_room_number(input("Enter new Room number: "))
+                print()
+                self.write_list_of_doctors_to_file()
+                print(f"Doctor whose ID is {dr_id} has been edited\n")
+                return
+        print("Can't find the doctor with the same ID on the system\n")
+
+    # displays a list of doctors by calling the display_doctor_info in a loop
+    def display_doctors_list(self):
+        print("{:<10} {:<20} {:<15} {:<15} {:<15} {:<10}\n".format(
+            "Id", "Name", "Speciality", "Timing", "Qualification", "Room Number"))
+
+        for dr in self.doctors:
+            print(self.display_doctor_info(dr))
+
+    # writes list of doctors to the file. Gets formatted line from format_dr_info() and writes each line
+    def write_list_of_doctors_to_file(self):
+        with open("doctors.txt", "w") as f:
+            for dr in self.doctors:
+                f.write("\n" + self.format_dr_info(dr))
+
+    # appends new doctors to the end of file
+    def add_dr_to_file(self):
         new_dr = self.enter_dr_info()
-        # Append the new doctor object to the doctors list
-        self.doctors_list.append(new_dr)
-        # Display a success message
-        print('Doctor added successfully!')
+        self.doctors.append(new_dr)
+        with open("doctors.txt", "a") as f:
+            f.write(self.format_dr_info(new_dr) + "\n")
+        print(f"Doctor whose ID is {new_dr.get_doctor_id()} has been added\n")
 
-    # Method to delete a doctor from the list by their ID
-    def delete_doctor(self):
-        # Prompt user to enter doctor ID
-        dr_id = input('Enter doctor ID: ')
-        # Iterate over each doctor in the list
-        for dr in self.doctors_list:
-            # Check if the current doctor's ID matches the entered ID
-            if dr.id == dr_id:
-                # If a match is found, remove the doctor object from the list and display a success message
-                self.doctors_list.remove(dr)
-                print('Doctor deleted successfully!')
-                return True
-        # If no match is found, display an error message and return False
-        print('Can’t find the doctor...')
-        return False
 
-    # Method to update a doctor's information in the list by their ID
-    def update_doctor(self):
-        # Prompt user to enter doctor ID
-        dr_id = input('Enter doctor ID: ')
-        # Iterate over each doctor in the list
-        for dr in self.doctors_list:
-            # Check if the current doctor's ID matches the entered ID
-            if dr.id == dr_id:
-                # If a match is found, prompt user to enter updated information
-                name = input('Enter updated doctor name: ')
-                speciality = input('Enter updated doctor speciality: ')
-                timing = input('Enter updated doctor timing: ')
-                qualification = input('Enter updated doctor qualification: ')
-                room = input('Enter updated doctor room: ')
-                # Update the doctor object with the new information
-                dr.name = name
-                dr.speciality = speciality
-                dr.timing = timing
-                dr.qualification = qualification
-                dr.room = room
-                # Display a success message
-                print('Doctor information updated successfully!')
-                return True
-        # If no match is found, display an error message and return False
-        print('Can’t find the doctor...')
-        return False
+##############################################################################
 
-    # Method to save the updated doctor list to the data file
-    def save_doctors_file(self):
-        # Open the data file in write mode
-        with open('doctors.txt', 'w') as f:
-            # Iterate over each doctor in the list
-            for dr in self.doctors_list:
-                # Write the formatted doctor information to the file
-                f.write(self.format_dr_info(dr) + '\n')
-        # Display a success message
-        print('Doctor information saved to file successfully!')
 
 class Patient:
-    # Represents a patient with a unique id, name, disease, gender, and age.
 
-    def __init__(self, pid="", name="", disease="", gender="", age=0):
-        # Initializes a patient object with the given properties.
+    # in constructor keyword arguments are used so that the object can be instantiated without passing values
+
+    def __init__(self, pid=None, name=None, disease=None, gender=None, age=None):
         self.pid = pid
         self.name = name
         self.disease = disease
         self.gender = gender
         self.age = age
 
+    # getters and setters
+
     def get_pid(self):
-        # Returns the patient id.
         return self.pid
 
     def set_pid(self, new_pid):
-        # Sets the patient id to a new value.
         self.pid = new_pid
 
     def get_name(self):
-        # Returns the patient name.
         return self.name
 
     def set_name(self, new_name):
-        # Sets the patient name to a new value.
         self.name = new_name
 
     def get_disease(self):
-        # Returns the patient's disease.
         return self.disease
 
     def set_disease(self, new_disease):
-        # Sets the patient's disease to a new value.
         self.disease = new_disease
 
     def get_gender(self):
-        # Returns the patient's gender.
         return self.gender
 
     def set_gender(self, new_gender):
-        # Sets the patient's gender to a new value.
         self.gender = new_gender
 
     def get_age(self):
-        # Returns the patient's age.
         return self.age
 
     def set_age(self, new_age):
-        # Sets the patient's age to a new value.
         self.age = new_age
 
+    # returns string representation of patient object with underscores in between just like in file
     def __str__(self):
-        # Returns a string representation of the patient object.
         return f"{self.pid}_{self.name}_{self.disease}_{self.gender}_{self.age}"
 
+
+#############################################################################
+
+
 class PatientManager:
-    # Initializes the list of patients and reads patient information from a file
+
+    # create a list of patients and populate it from the patients.txt
     def __init__(self):
         self.patients = []
         self.read_patients_file()
 
-    # Format the patient information for the file
+    # format patient object just like in the file
     def format_patient_info_for_file(self, patient):
-        return f"{patient.get_pid()}_{patient.get_name()}_{patient.get_disease()}_{patient.get_gender()}_{patient.get_age()}\n"
+        return f"{patient.get_pid()}_{patient.get_name()}_{patient.get_disease()}_{patient.get_gender()}_{patient.get_age()}"
 
-    # Prompt the user to enter patient information and return a new Patient object
+    # ask user for info to enter new patient
     def enter_patient_info(self):
-        pid = input("Enter patient ID: ")
-        name = input("Enter patient name: ")
-        disease = input("Enter patient disease: ")
-        gender = input("Enter patient gender: ")
-        age = input("Enter patient age: ")
-        return Patient(pid=pid, name=name, disease=disease, gender=gender, age=age)
+        pid = input("Enter Patient id: ")
+        name = input("Enter Patient name: ")
+        disease = input("Enter Patient disease: ")
+        gender = input("Enter Patient gender: ")
+        age = input("Enter Patient age: ")
+        print()
+        return Patient(pid, name, disease, gender, age)
 
-    # Read patient information from a file and store it in the list of patients
+    # reads patients.txt to get a list of patients. This file is separated by underscores
     def read_patients_file(self):
         with open("patients.txt", "r") as file:
+            # skip the header line
+            next(file)
             for line in file:
-                pid, name, disease, gender, age = line.strip().split("_")
-                self.patients.append(Patient(pid=pid, name=name, disease=disease, gender=gender, age=age))
+                patient_info = line.strip().split("_")
+                self.patients.append(Patient(patient_info[0], patient_info[1], patient_info[2], patient_info[3], patient_info[4]))
 
-    # Search for a patient by ID and display their information
+    # search for a patient in the patients list by id. If it is found print it
     def search_patient_by_id(self):
-        pid = input("Enter patient ID: ")
+        patient_id = input("Enter the Patient Id: ")
         for patient in self.patients:
-            if patient.get_pid() == pid:
-                self.display_patient_info(patient)
+            if patient.get_pid() == patient_id:
+                print("{:<10} {:<20} {:<15} {:<15} {:<15}\n".format(
+                    "Id", "Name", "Disease", "Gender", "Age"))
+                print(self.display_patient_info(patient))
                 return
-        print("Can't find the patient...")
+        print("Can't find the Patient with the same id on the system\n")
 
-    # Display the list of patients and their information
+    # display one patient object in fixed width fields like a table
     def display_patient_info(self, patient):
-        print(f"Patient ID: {patient.get_pid()}")
-        print(f"Name: {patient.get_name()}")
-        print(f"Disease: {patient.get_disease()}")
-        print(f"Gender: {patient.get_gender()}")
-        print(f"Age: {patient.get_age()}")
+        return ("{:<10} {:<20} {:<15} {:<15} {:<15}\n".format(
+            patient.get_pid(), patient.get_name(), patient.get_disease(), patient.get_gender(), patient.get_age()))
 
-    # Edit patient information by ID
+    # edit the patient in the patients list and also update the patient.txt file
     def edit_patient_info_by_id(self):
-        pid = input("Enter patient ID: ")
+        patient_id = input("Please enter the id of the Patient that you want to edit their information: ")
         for patient in self.patients:
-            if patient.get_pid() == pid:
-                name = input("Enter new patient name: ")
-                disease = input("Enter new patient disease: ")
-                gender = input("Enter new patient gender: ")
-                age = input("Enter new patient age: ")
-                patient.set_name(name)
-                patient.set_disease(disease)
-                patient.set_gender(gender)
-                patient.set_age(age)
+            if patient.get_pid() == patient_id:
+                patient.set_name(input("Enter new Name: "))
+                patient.set_disease(input("Enter new disease: "))
+                patient.set_gender(input("Enter new gender: "))
+                patient.set_age(input("Enter new age: "))
+                print()
                 self.write_list_of_patients_to_file()
-                print("Patient information has been updated.")
+                print(f"Patient whose ID is {patient_id} has been edited.\n")
                 return
-        print("Cannot find the patient...")
+        print("Can't find the Patient with the same id on the system\n")
 
-    # Display the list of patients and their information
+    # displays a list of patients by calling the display_patient_info in a loop
     def display_patients_list(self):
-        for patient in self.patients:
-            self.display_patient_info(patient)
-            print()
 
-    # Write the list of patients to a file
+        print("{:<10} {:<20} {:<15} {:<15} {:<15}\n".format(
+            "Id", "Name", "Disease", "Gender", "Age"))
+        for patient in self.patients:
+            print(self.display_patient_info(patient))
+
+    # writes list of patients to the file. Gets formatted line from format_patient_info_for_file() and writes each line
     def write_list_of_patients_to_file(self):
         with open("patients.txt", "w") as file:
             for patient in self.patients:
-                file.write(self.format_patient_info_for_file(patient))
+                file.write("\n" + self.format_patient_info_for_file(patient))
 
-    # Add a new patient to the file and list of patients
+    # appends new patients to the end of file
     def add_patient_to_file(self):
-        patient = self.enter_patient_info()
-        self.patients.append(patient)
+        new_patient = self.enter_patient_info()
+        self.patients.append(new_patient)
+        formatted_patient_info = self.format_patient_info_for_file(new_patient)
         with open("patients.txt", "a") as file:
-            file.write(self.format_patient_info_for_file(patient))
-        print("A new patient has been added.")
-    
+            file.write(formatted_patient_info + "\n")
+        print(f"Patient whose ID is {new_patient.get_pid()} has been added.\n")
+
+
+################################################################################
+
 class Management:
+    # create doctor and patient managers
+
     def __init__(self):
         self.doctor_manager = DoctorManager()
         self.patient_manager = PatientManager()
 
     def display_menu(self):
-        # Displays the main menu and takes input from the user until the user enters 3 to exit the program
         while True:
-            print("Main Menu:")
-            print("1. Doctors")
-            print("2. Patients")
-            print("3. Exit Program")
-            choice = input("Enter your choice: ")
-            if choice == "1":
-                self.display_doctor_menu()
-            elif choice == "2":
-                self.display_patient_menu()
-            elif choice == "3":
-                print("Exiting program...")
-                break
-            else:
-                print("Invalid choice, please try again.")
+            print("Welcome to Alberta Hospital (AH) Management system")
+            print("Select from the following options, or select 3 to stop:")
+            print("1 - \tDoctors")
+            print("2 - \tPatients")
+            print("3 - \tExit Program")
+            choice = input()
+            print()
 
-    def display_doctor_menu(self):
-        # Displays the doctor menu and takes input from the user until the user enters 6 to return to the main menu
-        while True:
-            print("Doctor Menu:")
-            print("1. Display list of doctors")
-            print("2. Search doctor by ID")
-            print("3. Search doctor by name")
-            print("4. Add new doctor")
-            print("5. Edit existing doctor information")
-            print("6. Back to Main Menu")
-            choice = input("Enter your choice: ")
             if choice == "1":
-                self.doctor_manager.display_doctors_list()
-            elif choice == "2":
-                self.doctor_manager.search_doctor_by_id()
-            elif choice == "3":
-                self.doctor_manager.search_doctor_by_name()
-            elif choice == "4":
-                self.doctor_manager.add_doctor_to_file()
-            elif choice == "5":
-                self.doctor_manager.edit_doctor_info_by_id()
-            elif choice == "6":
-                break
-            else:
-                print("Invalid choice, please try again.")
+                while True:
+                    print("Doctors Menu:")
+                    print("1 - Display Doctors list")
+                    print("2 - Search for doctor by ID")
+                    print("3 - Search for doctor by name")
+                    print("4 - Add doctor")
+                    print("5 - Edit doctor info")
+                    print("6 - Back to the Main Menu")
+                    choice = input()
+                    print()
 
-    def display_patient_menu(self):
-        # Displays the patient menu and takes input from the user until the user enters 5 to return to the main menu
-        while True:
-            print("Patient Menu:")
-            print("1. Display list of patients")
-            print("2. Search patient by ID")
-            print("3. Add new patient")
-            print("4. Edit existing patient information")
-            print("5. Back to Main Menu")
-            choice = input("Enter your choice: ")
-            if choice == "1":
-                self.patient_manager.display_patients_list()
+                    if choice == "1":
+                        self.doctor_manager.display_doctors_list()
+                    elif choice == "2":
+                        self.doctor_manager.search_doctor_by_id()
+                    elif choice == "3":
+                        self.doctor_manager.search_doctor_by_name()
+                    elif choice == "4":
+                        self.doctor_manager.add_dr_to_file()
+                    elif choice == "5":
+                        self.doctor_manager.edit_doctor_info()
+                    elif choice == "6":
+                        break
+                    else:
+                        print("Invalid input. Please try again.\n")
+
             elif choice == "2":
-                self.patient_manager.search_patient_by_id()
+                while True:
+                    print("Patients Menu:")
+                    print("1 - Display Patients list")
+                    print("2 - Search for patient by ID")
+                    print("3 - Add patient")
+                    print("4 - Edit patient info")
+                    print("5 - Back to the Main Menu")
+                    choice = input("")
+                    print()
+
+                    if choice == "1":
+                        self.patient_manager.display_patients_list()
+                    elif choice == "2":
+                        self.patient_manager.search_patient_by_id()
+                    elif choice == "3":
+                        self.patient_manager.add_patient_to_file()
+                    elif choice == "4":
+                        self.patient_manager.edit_patient_info_by_id()
+                    elif choice == "5":
+                        break
+                    else:
+                        print("Invalid input. Please try again.\n")
+
             elif choice == "3":
-                self.patient_manager.add_patient_to_file()
-            elif choice == "4":
-                self.patient_manager.edit_patient_info_by_id()
-            elif choice == "5":
+                print("Thanks for using the program. Bye!\n")
                 break
+
             else:
-                print("Invalid choice, please try again.")
+                print("Invalid input. Please try again.\n")
+
+
+#############################################################
+
+# create an instance of Management class and run the program
+management_system = Management()
+
+# display the menu
+management_system.display_menu()
