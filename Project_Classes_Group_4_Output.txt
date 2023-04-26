@@ -148,7 +148,7 @@ ID   Name                   Disease         Gender          Age
             
 14   Alonna                 Malaria         Female          45
             
-15   Ravi                   Diabetes        Male            65             
+15   Ravi                   Diabetes        Male            25            
 
 Patients Menu:
 1 - Display patients list
@@ -173,7 +173,7 @@ Enter the Patient Id: 15
 
 ID   Name		    Disease	    Gender	    Age
 
-15   Ravi                   Diabetes        Male            65             
+15   Ravi                   Diabetes        Male            25             
 
 Patients Menu:
 1 - Display patients list
@@ -223,7 +223,7 @@ ID   Name                   Disease         Gender          Age
 
 14   Alonna                 Malaria         Female          45
             
-15   Ravi                   Diabetes        Male            65
+15   Ravi                   Diabetes        Male            25
 
 16   Mary		    Cancer          Female          55
             
