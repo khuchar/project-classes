@@ -28,9 +28,6 @@
 #   as well as search for records by ID or name.
 #
 
-
-##############################################################
-
 class Doctor:
 
     # in constructor keyword arguments are used so that the object can be instantiated without passing values
@@ -85,8 +82,6 @@ class Doctor:
     # returns string representation of doctor object with underscores in between just like in file
     def __str__(self):
         return f"{self.doctor_id}_{self.name}_{self.specialization}_{self.working_time}_{self.qualification}_{self.room_number}"
-
-#############################################################################
 
 
 class DoctorManager:
@@ -195,9 +190,6 @@ class DoctorManager:
         print(f"Doctor whose ID is {new_dr.get_doctor_id()} has been added\n")
 
 
-##############################################################################
-
-
 class Patient:
 
     # in constructor keyword arguments are used so that the object can be instantiated without passing values
@@ -244,9 +236,6 @@ class Patient:
     # returns string representation of patient object with underscores in between just like in file
     def __str__(self):
         return f"{self.pid}_{self.name}_{self.disease}_{self.gender}_{self.age}"
-
-
-#############################################################################
 
 
 class PatientManager:
@@ -332,9 +321,7 @@ class PatientManager:
         with open("patients.txt", "a") as file:
             file.write(formatted_patient_info + "\n")
         print(f"Patient whose ID is {new_patient.get_pid()} has been added.\n")
-
-
-################################################################################
+        
 
 class Management:
     # create doctor and patient managers
@@ -411,8 +398,6 @@ class Management:
             else:
                 print("Invalid input. Please try again.\n")
 
-
-#############################################################
 
 # create an instance of Management class and run the program
 management_system = Management()
