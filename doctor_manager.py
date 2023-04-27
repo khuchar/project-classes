@@ -31,6 +31,7 @@ class DoctorManager:
                 parts = line.strip().split("_")
                 self.doctors.append(Doctor(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5]))
 
+
     # search for a doctor in the doctors list by id. If it is found print it
     def search_doctor_by_id(self):
         dr_id = input("Enter the doctor Id: ")
