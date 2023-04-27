@@ -1,6 +1,6 @@
 # Hospital Management System
 #
-# Kevin Vuong, Tommy Nguyen, Charlie Khu
+# Author: Kevin Vuong, Charlie Khu, Tho my Nguyen
 # Date: [April 25th 2023]
 
 # This program is designed to help manage patient and doctor records for a hospital.
@@ -26,8 +26,11 @@
 #   and writes the updated records back to the text files.
 # - The program provides functions to display patient and doctor records in a table format,
 #   as well as search for records by ID or name.
+#
 
-# Define the Doctor class with its properties 
+
+##############################################################
+
 class Doctor:
 
     # in constructor keyword arguments are used so that the object can be instantiated without passing values
@@ -83,7 +86,7 @@ class Doctor:
     def __str__(self):
         return f"{self.doctor_id}_{self.name}_{self.specialization}_{self.working_time}_{self.qualification}_{self.room_number}"
 
-
+#############################################################################
 
 
 class DoctorManager:
@@ -112,15 +115,13 @@ class DoctorManager:
 
     # reads doctors.txt to get a list of doctors. This file is separated by underscores
     def read_doctors_file(self):
-        try:
-            with open("doctors.txt") as f:
-                # skip the header line
-                next(f)
-                for line in f:
-                    parts = line.strip().split("_")
-                    self.doctors.append(Doctor(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5]))
-        except FileNotFoundError:
-            print("Doctors file not found.\n")
+        with open("doctors.txt") as f:
+            # skip the header line
+            next(f)
+            for line in f:
+                parts = line.strip().split("_")
+                self.doctors.append(Doctor(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5]))
+
 
     # search for a doctor in the doctors list by id. If it is found print it
     def search_doctor_by_id(self):
@@ -194,6 +195,7 @@ class DoctorManager:
         print(f"Doctor whose ID is {new_dr.get_doctor_id()} has been added\n")
 
 
+##############################################################################
 
 
 class Patient:
@@ -244,7 +246,7 @@ class Patient:
         return f"{self.pid}_{self.name}_{self.disease}_{self.gender}_{self.age}"
 
 
-
+#############################################################################
 
 
 class PatientManager:
@@ -332,7 +334,7 @@ class PatientManager:
         print(f"Patient whose ID is {new_patient.get_pid()} has been added.\n")
 
 
-
+################################################################################
 
 class Management:
     # create doctor and patient managers
@@ -410,7 +412,7 @@ class Management:
                 print("Invalid input. Please try again.\n")
 
 
-
+#############################################################
 
 # create an instance of Management class and run the program
 management_system = Management()
