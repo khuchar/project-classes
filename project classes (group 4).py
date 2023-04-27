@@ -1,3 +1,32 @@
+# Hospital Management System
+#
+# Kevin Vuong, Tommy Nguyen, Charlie Khu
+# Date: [April 25th 2023]
+
+# This program is designed to help manage patient and doctor records for a hospital.
+# The program reads patient and doctor information from text files, and allows the user
+# to add and edit records. The program also provides a menu-based interface
+# to display patient and doctor records, as well as search for records by ID or name.
+#
+# Inputs:
+# - patient.txt: a text file containing patient records
+# - doctor.txt: a text file containing doctor records
+# - User input from the console: the user can add or edit patient and doctor records,
+#   as well as display records or search for records by ID or name.
+#
+# Outputs:
+# - The program displays patient and doctor records in a table format
+# - The program allows the user to search for records by ID or name and displays the
+#   corresponding records in a table format.
+# - The program writes the updated patient and doctor records back to the text files.
+#
+# Processing:
+# - The program reads patient and doctor records from text files and stores them as objects.
+# - The program provides functions to add and edit patient and doctor records,
+#   and writes the updated records back to the text files.
+# - The program provides functions to display patient and doctor records in a table format,
+#   as well as search for records by ID or name.
+
 # Define the Doctor class with its properties 
 class Doctor:
 
