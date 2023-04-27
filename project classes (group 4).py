@@ -1,4 +1,3 @@
-# Define the Doctor class with its properties 
 class Doctor:
 
     # in constructor keyword arguments are used so that the object can be instantiated without passing values
@@ -54,8 +53,7 @@ class Doctor:
     def __str__(self):
         return f"{self.doctor_id}_{self.name}_{self.specialization}_{self.working_time}_{self.qualification}_{self.room_number}"
 
-
-
+    
 
 class DoctorManager:
 
@@ -83,15 +81,13 @@ class DoctorManager:
 
     # reads doctors.txt to get a list of doctors. This file is separated by underscores
     def read_doctors_file(self):
-        try:
-            with open("doctors.txt") as f:
-                # skip the header line
-                next(f)
-                for line in f:
-                    parts = line.strip().split("_")
-                    self.doctors.append(Doctor(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5]))
-        except FileNotFoundError:
-            print("Doctors file not found.\n")
+        with open("doctors.txt") as f:
+            # skip the header line
+            next(f)
+            for line in f:
+                parts = line.strip().split("_")
+                self.doctors.append(Doctor(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5]))
+
 
     # search for a doctor in the doctors list by id. If it is found print it
     def search_doctor_by_id(self):
@@ -163,6 +159,7 @@ class DoctorManager:
         with open("doctors.txt", "a") as f:
             f.write(self.format_dr_info(new_dr) + "\n")
         print(f"Doctor whose ID is {new_dr.get_doctor_id()} has been added\n")
+
 
 
 
